@@ -14,7 +14,7 @@ public class CityGame {
 
     public void getCities() {
         try {
-            File file = new File("/Users/raufsuleymanov/IdeaProjects/CityMANIA/src/ListOfCities");
+            File file = new File("src/ListOfHungarianCities.txt");
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String cityName = reader.nextLine();
@@ -47,6 +47,7 @@ public class CityGame {
             return chosenCity;
         } else {
             gameOver = true;
+
             return "There is no more words with '" + letter + "'";
         }
     }

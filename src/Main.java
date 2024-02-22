@@ -17,13 +17,8 @@ public class Main {
                 continue;
             }
 
-
             char lastLetter = userCity.toUpperCase().charAt(userCity.length() - 1);
             String computerCity = cityGame.getCityStartingWith(lastLetter);
-            if (computerCity.equals("There is no more words with '" + lastLetter + "'")) {
-                System.out.println(computerCity);
-                continue;
-            }
 
             System.out.println("Computer's city: " + computerCity);
             cityGame.markCityAsUsed(computerCity);
