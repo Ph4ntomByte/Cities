@@ -3,18 +3,16 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class CityGame {
-    private Map<Character, List<String>> cityMap = new HashMap<>();
-    private Random random = new Random();
-    private Set<String> usedCities = new HashSet<>();
+    private final Map<Character, List<String>> cityMap = new HashMap<>();
+    private final Random random = new Random();
+    private final Set<String> usedCities = new HashSet<>();
     public boolean gameOver;
+    private int score = 0;
 
-    public CityGame() {
-        getCities();
-    }
 
-    public void getCities() {
+    public void getCities(String path) {
         try {
-            File file = new File("src/ListOfHungarianCities.txt");
+            File file = new File(path);
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String cityName = reader.nextLine();
@@ -31,7 +29,7 @@ public class CityGame {
         }
     }
 
-    public String getCityStartingWith(char letter) {
+    public void getCityStartingWith(char letter) {
         List<String> citiesStartingWithLetter = cityMap.getOrDefault(Character.toUpperCase(letter), Collections.emptyList());
         List<String> availableCities = new ArrayList<>();
 
@@ -40,15 +38,12 @@ public class CityGame {
                 availableCities.add(city);
             }
         }
-
+        String chosenCity = availableCities.get(random.nextInt(availableCities.size()));
         if (!availableCities.isEmpty()) {
-            String chosenCity = availableCities.get(random.nextInt(availableCities.size()));
             usedCities.add(chosenCity);
-            return chosenCity;
+            System.out.println("Computer's city: " + chosenCity);
         } else {
             gameOver = true;
-
-            return "There is no more words with '" + letter + "'";
         }
     }
 
@@ -62,16 +57,14 @@ public class CityGame {
             return false;
         } else {
             markCityAsUsed(word);
+//            score += 10;
+//            System.out.println("Your score is " + score);
         }
         return true;
     }
-
 
     public void markCityAsUsed(String city) {
         usedCities.add(city);
     }
 
-    public boolean Checkcity() {
-        return gameOver;
-    }
 }
