@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ba61506-87b3-43ab-95a1-2d5f959da7d4" name="Changes" comment="fixed hungarian letters">
+    <list default="true" id="4ba61506-87b3-43ab-95a1-2d5f959da7d4" name="Changes" comment="improved checking conditions">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Countries.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Multiplayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/r.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CityGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CityGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CityInCountry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CitiesInCountry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CountryGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CountryGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ListOfCities" beforeDir="false" afterPath="$PROJECT_DIR$/src/ListOfCities" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +34,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/CityGame.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
@@ -35,28 +44,33 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2ciVqBGfBlMD5SnjMigi1JTZgBy" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Cities.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Cities.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Multiplayer.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "File.Encoding",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Cities" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Cities" />
@@ -72,9 +86,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Multiplayer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Multiplayer" />
+      <module name="CityMANIA" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Multiplayer" />
         <item itemvalue="Application.Cities" />
       </list>
     </recent_temporary>
@@ -97,6 +119,7 @@
       <workItem from="1708594578467" duration="8004000" />
       <workItem from="1708604120517" duration="3028000" />
       <workItem from="1708612335210" duration="11399000" />
+      <workItem from="1708675565562" duration="9739000" />
     </task>
     <task id="LOCAL-00001" summary="added attempts">
       <option name="closed" value="true" />
@@ -114,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708618785199</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="improved checking conditions">
+      <option name="closed" value="true" />
+      <created>1708674447715</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1708674447715</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,8 +163,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="added attempts" />
     <MESSAGE value="fixed hungarian letters" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed hungarian letters" />
+    <MESSAGE value="improved checking conditions" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved checking conditions" />
   </component>
 </project>

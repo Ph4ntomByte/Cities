@@ -7,7 +7,7 @@ public class CityGame {
     private final Random random = new Random();
     private final Set<String> usedCities = new HashSet<>();
     public boolean gameOver;
-    private int attempts = 5;
+    private int attempts = 2;
 
 
     public void getCities(String path) {
@@ -35,28 +35,23 @@ public class CityGame {
         Scanner scanner = new Scanner(System.in);
         while (attempts > 0) {
             System.out.print("Your city: ");
-            String userCity = scanner.nextLine().trim().toLowerCase();
-            if (!IsTheWordCorrect(userCity)) {
-                attempts--;
-                System.out.println("You have " + attempts + " attempts");
-                continue;
+            String userCity = scanner.nextLine().trim();
+            if (IsTheWordCorrect(userCity)) {
+                getCityStartingWith(userCity.toUpperCase().charAt(userCity.length() - 1));
             }
-            getCityStartingWith(userCity.toUpperCase().charAt(userCity.length() - 1));
         }
     }
 
-    public void GetInputs() {
+    public String GetInputForMultiple(String player) {
         getCities("src/ListOfCities");
         Scanner scanner = new Scanner(System.in);
-        while (attempts > 0) {
-            System.out.print("Your city: ");
-            String userCity = scanner.nextLine().trim().toLowerCase();
-            if (!IsTheWordCorrect(userCity)) {
-                attempts--;
-                System.out.println("You have " + attempts + " attempts");
-                continue;
-            }
+        System.out.print(player + " enter your city: ");
+        String userCity = scanner.nextLine().trim();
+        IsTheWordCorrect(userCity);
+        if (attempts == 0) {
+            gameOver = true;
         }
+        return userCity;
     }
 
     public void getCityStartingWith(char letter) {
@@ -79,12 +74,16 @@ public class CityGame {
     }
 
     public boolean IsTheWordCorrect(String word) {
-        if (usedCities.contains(word)) {
+        if (usedCities.contains(word.toLowerCase())) {
             System.out.println("This word has already been taken");
+            attempts--;
+            System.out.println("You have " + attempts + " attempts");
             return false;
         } else if (!cityMap.containsKey(Character.toUpperCase(word.charAt(0))) ||
-                !cityMap.get(Character.toUpperCase(word.charAt(0))).contains(word)) {
+                !cityMap.get(Character.toUpperCase(word.charAt(0))).contains(word.toLowerCase())) {
             System.out.println("There is no such city");
+            attempts--;
+            System.out.println("You have " + attempts + " attempts");
             return false;
         } else {
             markCityAsUsed(word);
@@ -94,8 +93,21 @@ public class CityGame {
         return true;
     }
 
+    public void promptNewGame() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Do you want to start a new game? (yes/no)");
+        String response = scanner.nextLine();
+        if (response.equalsIgnoreCase("yes")) {
+            System.out.println("Starting a new game...");
+            Multiplayer multiplayer = new Multiplayer();
+            multiplayer.GetNames();
+        } else {
+            System.out.println("Thanks for playing!");
+            System.exit(0);
+        }
+    }
+
     public void markCityAsUsed(String city) {
         usedCities.add(city);
     }
-
 }

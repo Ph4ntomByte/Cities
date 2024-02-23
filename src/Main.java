@@ -5,10 +5,12 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         CityGame cityGame = new CityGame();
-        CountryGame country = new CountryGame();
+        CitiesInCountry country = new CitiesInCountry();
+        Multiplayer multiplayer = new Multiplayer();
+
 
         System.out.println("Choose one of the games: ");
-        System.out.println("1 CityGame\n2 CountryGame\n3 Multiplayer\n4 Exit");
+        System.out.println("1 AllCities\n2 Cities By Country\n3 Multiplayer\n4 Exit");
         System.out.print("Your choice: ");
         int chooseGame;
 
@@ -18,7 +20,8 @@ public class Main {
                 System.out.print("Your choice: ");
                 scanner.next();
             }
-            chooseGame = Integer.parseInt(scanner.nextLine());
+            chooseGame = scanner.nextInt();
+            scanner.nextLine();
             if (chooseGame < 1 || chooseGame > 4) {
                 System.out.println("Invalid choice. Please enter a number between 1 and 4");
                 System.out.print("Your choice: ");
@@ -31,11 +34,12 @@ public class Main {
                 cityGame.GetInput();
                 break;
             case 2:
-                System.out.println("Welcome to the Country Game!");
-                country.ChooseCountry();
+                System.out.println("Welcome to the Cities by Country Game!");
+                country.chooseCountry();
                 break;
             case 3:
                 System.out.println("Welcome to the Multiplayer Game!");
+                multiplayer.GetNames();
                 break;
             case 4:
                 System.out.println("EXIT");
