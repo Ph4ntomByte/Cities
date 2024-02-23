@@ -7,7 +7,7 @@ public class CityGame {
     private final Random random = new Random();
     private final Set<String> usedCities = new HashSet<>();
     public boolean gameOver;
-    private int score = 0;
+    private int attempts = 5;
 
 
     public void getCities(String path) {
@@ -29,6 +29,36 @@ public class CityGame {
         }
     }
 
+
+    public void GetInput() {
+        getCities("src/ListOfCities");
+        Scanner scanner = new Scanner(System.in);
+        while (attempts > 0) {
+            System.out.print("Your city: ");
+            String userCity = scanner.nextLine().trim().toLowerCase();
+            if (!IsTheWordCorrect(userCity)) {
+                attempts--;
+                System.out.println("You have " + attempts + " attempts");
+                continue;
+            }
+            getCityStartingWith(userCity.toUpperCase().charAt(userCity.length() - 1));
+        }
+    }
+
+    public void GetInputs() {
+        getCities("src/ListOfCities");
+        Scanner scanner = new Scanner(System.in);
+        while (attempts > 0) {
+            System.out.print("Your city: ");
+            String userCity = scanner.nextLine().trim().toLowerCase();
+            if (!IsTheWordCorrect(userCity)) {
+                attempts--;
+                System.out.println("You have " + attempts + " attempts");
+                continue;
+            }
+        }
+    }
+
     public void getCityStartingWith(char letter) {
         List<String> citiesStartingWithLetter = cityMap.getOrDefault(Character.toUpperCase(letter), Collections.emptyList());
         List<String> availableCities = new ArrayList<>();
@@ -43,6 +73,7 @@ public class CityGame {
             usedCities.add(chosenCity);
             System.out.println("Computer's city: " + chosenCity);
         } else {
+            System.out.println("There is no more cities");
             gameOver = true;
         }
     }

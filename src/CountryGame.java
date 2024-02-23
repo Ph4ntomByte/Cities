@@ -8,10 +8,21 @@ public class CountryGame {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Choose country");
-        System.out.println("1 France\n2 Spain\n3 United Kingdom\n4 USA\n5 Hungary");
+        System.out.println("1 France\n2 Spain\n3 United Kingdom\n4 USA\n5 Hungary\n6 Exit");
         System.out.print("Your choice: ");
-        int res = scan.nextInt();
-        scan.nextLine();
+        int res;
+        do {
+            while (!scan.hasNextInt()) {
+                System.out.println("Enter a number");
+                System.out.print("Your choice: ");
+                scan.next();
+            }
+            res = Integer.parseInt(scan.nextLine());
+            if (res < 1 || res > 6) {
+                System.out.println("Invalid choice. Please enter a number between 1 and 6");
+                System.out.print("Your choice: ");
+            }
+        } while (res < 1 || res > 6);
 
         switch (res) {
             case 1:
@@ -34,10 +45,9 @@ public class CountryGame {
                 System.out.println("You chose Hungary\nYou gonna have to name 5 cities to pass the level");
                 cityGame.getCities("src/ListOfHungarianCities.txt");
                 break;
-            default:
-                System.out.println("Invalid choice");
-                cityGame.getCities("src/ListOfCities");
-                return;
+            case 6:
+                System.out.println("EXIT");
+                System.exit(0);
         }
 
         while (attempts > 0) {
