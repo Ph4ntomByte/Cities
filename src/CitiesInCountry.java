@@ -11,19 +11,19 @@ public class CitiesInCountry {
             choice = getValidChoice(scan);
             switch (choice) {
                 case 1:
-                    playGame(cityGame, "France", "src/ListOfFranceCities");
+                    playGame(cityGame, "France", "src/Lists/ListOfFranceCities");
                     break;
                 case 2:
-                    playGame(cityGame, "Spain", "src/ListOfSpanishCities");
+                    playGame(cityGame, "Spain", "src/Lists/ListOfSpanishCities");
                     break;
                 case 3:
-                    playGame(cityGame, "United Kingdom", "src/ListOfEnglishCities");
+                    playGame(cityGame, "United Kingdom", "src/Lists/ListOfEnglishCities");
                     break;
                 case 4:
-                    playGame(cityGame, "USA", "src/ListOfAmericanCities");
+                    playGame(cityGame, "USA", "src/Lists/ListOfAmericanCities");
                     break;
                 case 5:
-                    playGame(cityGame, "Hungary", "src/ListOfHungarianCities.txt");
+                    playGame(cityGame, "Hungary", "src/Lists/ListOfHungarianCities.txt");
                     break;
                 case 6:
                     System.out.println("EXIT");
@@ -59,7 +59,7 @@ public class CitiesInCountry {
     }
 
     private void playGame(CityGame cityGame, String country, String cityFilePath) {
-        System.out.println("You chose " + country + "\nYou're going to have to name 5 cities to pass the level");
+        System.out.println("You chose " + country);
         cityGame.getCities(cityFilePath);
         cityGame.GetInput();
     }

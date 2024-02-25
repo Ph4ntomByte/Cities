@@ -6,9 +6,7 @@ public class CityGame {
     private final Map<Character, List<String>> cityMap = new HashMap<>();
     private final Random random = new Random();
     private final Set<String> usedCities = new HashSet<>();
-    public boolean gameOver;
-    private int attempts = 2;
-
+    public int attempts = 2;
 
     public void getCities(String path) {
         try {
@@ -29,9 +27,8 @@ public class CityGame {
         }
     }
 
-
     public void GetInput() {
-        getCities("src/ListOfCities");
+        getCities("src/Lists/ListOfCities");
         Scanner scanner = new Scanner(System.in);
         while (attempts > 0) {
             System.out.print("Your city: ");
@@ -40,18 +37,6 @@ public class CityGame {
                 getCityStartingWith(userCity.toUpperCase().charAt(userCity.length() - 1));
             }
         }
-    }
-
-    public String GetInputForMultiple(String player) {
-        getCities("src/ListOfCities");
-        Scanner scanner = new Scanner(System.in);
-        System.out.print(player + " enter your city: ");
-        String userCity = scanner.nextLine().trim();
-        IsTheWordCorrect(userCity);
-        if (attempts == 0) {
-            gameOver = true;
-        }
-        return userCity;
     }
 
     public void getCityStartingWith(char letter) {
@@ -69,7 +54,6 @@ public class CityGame {
             System.out.println("Computer's city: " + chosenCity);
         } else {
             System.out.println("There is no more cities");
-            gameOver = true;
         }
     }
 
@@ -86,28 +70,30 @@ public class CityGame {
             System.out.println("You have " + attempts + " attempts");
             return false;
         } else {
+            System.out.println("You guessed it \uD83C\uDF89\"");
             markCityAsUsed(word);
-//            score += 10;
-//            System.out.println("Your score is " + score);
         }
         return true;
     }
 
-    public void promptNewGame() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Do you want to start a new game? (yes/no)");
-        String response = scanner.nextLine();
-        if (response.equalsIgnoreCase("yes")) {
-            System.out.println("Starting a new game...");
-            Multiplayer multiplayer = new Multiplayer();
-            multiplayer.GetNames();
-        } else {
-            System.out.println("Thanks for playing!");
-            System.exit(0);
-        }
-    }
 
     public void markCityAsUsed(String city) {
         usedCities.add(city);
     }
+
+
+    //    public void promptNewGame() {
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Do you want to start a new game? (yes/no)");
+//        String response = scanner.nextLine();
+//        if (response.equalsIgnoreCase("yes")) {
+//            System.out.println("Starting a new game...");
+//
+//            Multiplayer multiplayer = new Multiplayer();
+//            multiplayer.GetNames();
+//        } else {
+//            System.out.println("Thanks for playing!");
+//            System.exit(0);
+//        }
+//    }
 }
