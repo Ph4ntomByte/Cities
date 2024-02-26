@@ -1,11 +1,14 @@
 import java.util.*;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 public class Multiplayer extends CityGame {
     private final List<String> playerNames = new ArrayList<>();
     private final Map<String, Integer> scores = new HashMap<>();
     Scanner scanner = new Scanner(System.in);
+    private final int MaxStrikes = 5;
+
 
     public void getNames() {
         System.out.print("Enter number of players: ");
@@ -31,26 +34,40 @@ public class Multiplayer extends CityGame {
             anyPlayerHasAttemptsLeft = false;
 
             for (String playerName : playerNames) {
-                if (playerAttempts.getOrDefault(playerName, 2) > 0) {
-                    if (count == 1) {
-                        startGame(playerNames.get(0));
-                    } else {
-                        System.out.print(playerName + "'s turn: ");
-                        String cityInput = scanner.nextLine();
-                        if (isCityValid(cityInput, playerName)) {
-                            updateScore(playerName);
-                        }
-                        if (playerAttempts.get(playerName) > 0) {
-                            anyPlayerHasAttemptsLeft = true;
-                        }
-                    }
-                    displayScores();
+                int attempts = playerAttempts.get(playerName);
+                System.out.print(playerName + "'s turn: ");
+                String cityInput = scanner.nextLine();
+                if (isCityValid(cityInput)) {
+                    incrementStrike(playerName);
+                    updateScore(playerName);
+                } else {
+                    attempts--;
+                    nullStrike(playerName);
+                    playerAttempts.put(playerName, attempts);
+                    System.out.println(playerName + " have " + attempts + " attempts left.");
                 }
+                if (count == 1) {
+                    ComputerCity(cityInput.toUpperCase().charAt(cityInput.length() - 1), playerName);
+                }
+                if (playerAttempts.get(playerName) > 0) {
+                    anyPlayerHasAttemptsLeft = true;
+                }
+                displayScores();
             }
         }
         announceWinner();
     }
 
+    public void incrementStrike(String playerName) {
+        int strikes = countOfStrike.getOrDefault(playerName, 0);
+        if (strikes <= MaxStrikes) {
+            strikes++;
+        } else {
+            System.out.println(playerName + " reached maximum of strikes");
+        }
+        countOfStrike.put(playerName, strikes);
+
+    }
 
     private void updateScore(String playerName) {
         int strike = countOfStrike.get(playerName);
@@ -63,7 +80,17 @@ public class Multiplayer extends CityGame {
     }
 
     private void announceWinner() {
-        String winner = Collections.max(scores.entrySet(), Map.Entry.comparingByValue()).getKey();
-        System.out.println("Winner: " + winner + " with " + scores.get(winner) + " points.");
+        int highestScore = Collections.max(scores.values());
+        List<String> winners = scores.entrySet().stream()
+                .filter(entry -> entry.getValue() == highestScore)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        if (winners.size() == 1) {
+            System.out.println("Winner: " + winners.get(0) + " with a score of " + highestScore);
+        } else {
+            System.out.println("It's a draw between the following players with a score of " + highestScore + ": ");
+            winners.forEach(playerName -> System.out.println(playerName));
+        }
     }
+
 }

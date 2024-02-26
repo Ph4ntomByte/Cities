@@ -9,9 +9,7 @@ public class CityGame {
     public Map<String, Integer> playerAttempts = new HashMap<>();
     public Map<String, Integer> countOfStrike = new HashMap<>();
     private String lastCityUsed = "";
-    private int MaxStrikes = 5;
 
-    Scanner scanner = new Scanner(System.in);
 
     public void loadCities(String path) {
         try {
@@ -29,63 +27,21 @@ public class CityGame {
         }
     }
 
-    public void startGame(String playerName) {
-        loadCities("src/Lists/ListOfCities");
-        playerAttempts.put(playerName, 2);
-        int attempts = playerAttempts.get(playerName);
-        while (attempts > 0) {
-            System.out.print(playerName + "'s turn: ");
-            String userCity = scanner.nextLine().trim();
-            if (isCityValid(userCity, playerName)) {
-                ComputerCity(userCity.toUpperCase().charAt(userCity.length() - 1), playerName);
-            }
-            attempts = playerAttempts.get(playerName);
-        }
-    }
-
-    public boolean isCityValid(String city, String playerName) {
-        int attempts = playerAttempts.get(playerName);
-        int strike = countOfStrike.get(playerName);
+    public boolean isCityValid(String city) {
         if (usedCities.contains(city.toLowerCase())) {
             System.out.println("This city has already been used.");
-            attempts--;
-            nullStrike(playerName);
         } else if (!cityMap.containsKey(Character.toUpperCase(city.charAt(0))) ||
                 !cityMap.get(Character.toUpperCase(city.charAt(0))).contains(city.toLowerCase())) {
             System.out.println("This city does not exist.");
-            attempts--;
-            nullStrike(playerName);
         } else if (!lastCityUsed.isEmpty() && city.toLowerCase().charAt(0) != lastCityUsed.toLowerCase().charAt(lastCityUsed.length() - 1)) {
             System.out.println("The city does not start with the correct letter.");
-            attempts--;
-            nullStrike(playerName);
         } else {
             System.out.println("Correct! 🎉");
             markCityAsUsed(city);
             lastCityUsed = city;
-            incrementStrike(playerName);
             return true;
         }
-        countOfStrike.put(playerName, strike);
-
-        System.out.println("You have " + attempts + " attempts left.");
-        playerAttempts.put(playerName, attempts);
         return false;
-    }
-
-    public void incrementStrike(String playerName) {
-        int strikes = countOfStrike.getOrDefault(playerName, 0);
-        if (strikes <= MaxStrikes) {
-            strikes++;
-        } else {
-            System.out.println(playerName + " reached maximum of strikes");
-        }
-        countOfStrike.put(playerName, strikes);
-
-    }
-
-    public void nullStrike(String playerName) {
-        countOfStrike.put(playerName, 1);
     }
 
 
@@ -125,17 +81,20 @@ public class CityGame {
         return Optional.empty();
     }
 
-
     private void markCityAsUsed(String city) {
         usedCities.add(city.toLowerCase());
     }
+
+    public void nullStrike(String playerName) {
+        countOfStrike.put(playerName, 0);
+    }
+
 
     public int getValidChoice(Scanner scanner, int max) {
         int choice;
         do {
             while (!scanner.hasNextInt()) {
-                System.out.println("Enter a number");
-                System.out.print("Your choice: ");
+                System.out.print("Enter a number: ");
                 scanner.next();
             }
             choice = scanner.nextInt();

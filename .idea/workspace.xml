@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ba61506-87b3-43ab-95a1-2d5f959da7d4" name="Changes" comment="removed unnnecasry functions">
+    <list default="true" id="4ba61506-87b3-43ab-95a1-2d5f959da7d4" name="Changes" comment="added strikes function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CityGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CityGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Multiplayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multiplayer.java" afterDir="false" />
@@ -128,7 +128,7 @@
       <workItem from="1708943210891" duration="1300000" />
       <workItem from="1708945120523" duration="99000" />
       <workItem from="1708945229819" duration="200000" />
-      <workItem from="1708945439578" duration="6936000" />
+      <workItem from="1708945439578" duration="12559000" />
     </task>
     <task id="LOCAL-00001" summary="added attempts">
       <option name="closed" value="true" />
@@ -170,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708929796637</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added strikes function">
+      <option name="closed" value="true" />
+      <created>1708961728772</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708961728772</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,7 +229,8 @@
     <MESSAGE value="improved checking conditions" />
     <MESSAGE value="fixed all issues, added prompt new game function" />
     <MESSAGE value="removed unnnecasry functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed unnnecasry functions" />
+    <MESSAGE value="added strikes function" />
+    <option name="LAST_COMMIT_MESSAGE" value="added strikes function" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
