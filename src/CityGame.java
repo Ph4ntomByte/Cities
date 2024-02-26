@@ -4,96 +4,95 @@ import java.util.*;
 
 public class CityGame {
     private final Map<Character, List<String>> cityMap = new HashMap<>();
-    private final Random random = new Random();
     private final Set<String> usedCities = new HashSet<>();
-    public int attempts = 2;
+    private final Random random = new Random();
+    public Map<String, Integer> playerAttempts = new HashMap<>();
 
-    public void getCities(String path) {
+    Scanner scanner = new Scanner(System.in);
+
+    public void loadCities(String path) {
         try {
             File file = new File(path);
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String cityName = reader.nextLine();
                 char firstLetter = Character.toUpperCase(cityName.charAt(0));
-
-                if (!cityMap.containsKey(firstLetter)) {
-                    cityMap.put(firstLetter, new ArrayList<>());
-                }
-                cityMap.get(firstLetter).add(cityName);
+                cityMap.putIfAbsent(firstLetter, new ArrayList<>());
+                cityMap.get(firstLetter).add(cityName.toLowerCase());
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.err.println("File not found: " + e.getMessage());
         }
     }
 
-    public void GetInput() {
-        getCities("src/Lists/ListOfCities");
-        Scanner scanner = new Scanner(System.in);
+    public void startGame(String playerName) {
+        loadCities("src/Lists/ListOfCities");
+        playerAttempts.put(playerName, 5);
+        int attempts = playerAttempts.get(playerName);
+
         while (attempts > 0) {
-            System.out.print("Your city: ");
+            System.out.print(playerName + " city: ");
             String userCity = scanner.nextLine().trim();
-            if (IsTheWordCorrect(userCity)) {
-                getCityStartingWith(userCity.toUpperCase().charAt(userCity.length() - 1));
+            if (isCityValid(userCity, playerName)) {
+                ComputerCity(userCity.toUpperCase().charAt(userCity.length() - 1), playerName);
             }
+            attempts = playerAttempts.get(playerName);
         }
     }
 
-    public void getCityStartingWith(char letter) {
-        List<String> citiesStartingWithLetter = cityMap.getOrDefault(Character.toUpperCase(letter), Collections.emptyList());
-        List<String> availableCities = new ArrayList<>();
+    public boolean isCityValid(String city, String playerName) {
+        int attempts = playerAttempts.get(playerName);
 
-        for (String city : citiesStartingWithLetter) {
-            if (!usedCities.contains(city)) {
-                availableCities.add(city);
-            }
+        if (usedCities.contains(city.toLowerCase())) {
+            System.out.println("This city has already been used.");
+            attempts--;
+        } else if (!cityMap.containsKey(Character.toUpperCase(city.charAt(0))) || !cityMap.get(Character.toUpperCase(city.charAt(0))).contains(city.toLowerCase())) {
+            System.out.println("This city does not exist.");
+            attempts--;
+        } else {
+            System.out.println("Correct! 🎉");
+            markCityAsUsed(city);
+            return true;
         }
-        String chosenCity = availableCities.get(random.nextInt(availableCities.size()));
-        if (!availableCities.isEmpty()) {
-            usedCities.add(chosenCity);
+
+        System.out.println("You have " + attempts + " attempts left.");
+        playerAttempts.put(playerName, attempts);
+        return false;
+    }
+
+    public void ComputerCity(char letter, String playerName) {
+        List<String> cities = cityMap.getOrDefault(Character.toUpperCase(letter), Collections.emptyList());
+        cities.removeAll(usedCities);
+        if (!cities.isEmpty()) {
+            String chosenCity = cities.get(random.nextInt(cities.size()));
+            usedCities.add(chosenCity.toLowerCase());
             System.out.println("Computer's city: " + chosenCity);
         } else {
-            System.out.println("There is no more cities");
+            System.out.println("No more cities available.");
         }
     }
 
-    public boolean IsTheWordCorrect(String word) {
-        if (usedCities.contains(word.toLowerCase())) {
-            System.out.println("This word has already been taken");
-            attempts--;
-            System.out.println("You have " + attempts + " attempts");
-            return false;
-        } else if (!cityMap.containsKey(Character.toUpperCase(word.charAt(0))) ||
-                !cityMap.get(Character.toUpperCase(word.charAt(0))).contains(word.toLowerCase())) {
-            System.out.println("There is no such city");
-            attempts--;
-            System.out.println("You have " + attempts + " attempts");
-            return false;
-        } else {
-            System.out.println("You guessed it \uD83C\uDF89\"");
-            markCityAsUsed(word);
-        }
-        return true;
+    private void markCityAsUsed(String city) {
+        usedCities.add(city.toLowerCase());
     }
 
 
-    public void markCityAsUsed(String city) {
-        usedCities.add(city);
+    public int getValidChoice(Scanner scanner, int max) {
+        int choice;
+        do {
+            while (!scanner.hasNextInt()) {
+                System.out.println("Enter a number");
+                System.out.print("Your choice: ");
+                scanner.next();
+            }
+            choice = scanner.nextInt();
+            if (choice < 1 || choice > max) {
+                System.out.println("Invalid choice. Please enter a number between 1 and " + max);
+                System.out.print("Your choice: ");
+            }
+        } while (choice < 1 || choice > max);
+        scanner.nextLine();
+        return choice;
     }
-
-
-    //    public void promptNewGame() {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Do you want to start a new game? (yes/no)");
-//        String response = scanner.nextLine();
-//        if (response.equalsIgnoreCase("yes")) {
-//            System.out.println("Starting a new game...");
-//
-//            Multiplayer multiplayer = new Multiplayer();
-//            multiplayer.GetNames();
-//        } else {
-//            System.out.println("Thanks for playing!");
-//            System.exit(0);
-//        }
-//    }
 }
