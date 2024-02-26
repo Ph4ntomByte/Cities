@@ -1,13 +1,11 @@
 import java.util.*;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 
 public class Multiplayer extends CityGame {
     private final List<String> playerNames = new ArrayList<>();
     private final Map<String, Integer> scores = new HashMap<>();
     Scanner scanner = new Scanner(System.in);
-    private final int MaxStrikes = 5;
 
 
     public void getNames() {
@@ -27,8 +25,8 @@ public class Multiplayer extends CityGame {
 
 
     private void startMultiplayerGame(int count) {
-        loadCities("src/Lists/ListOfCities");
-
+        CitiesInCountry citiesInCountry = new CitiesInCountry();
+        loadCities(citiesInCountry.chooseCountry());
         boolean anyPlayerHasAttemptsLeft = true;
         while (anyPlayerHasAttemptsLeft) {
             anyPlayerHasAttemptsLeft = false;
@@ -60,7 +58,8 @@ public class Multiplayer extends CityGame {
 
     public void incrementStrike(String playerName) {
         int strikes = countOfStrike.getOrDefault(playerName, 0);
-        if (strikes <= MaxStrikes) {
+        int maxStrikes = 5;
+        if (strikes <= maxStrikes) {
             strikes++;
         } else {
             System.out.println(playerName + " reached maximum of strikes");
@@ -83,13 +82,12 @@ public class Multiplayer extends CityGame {
         int highestScore = Collections.max(scores.values());
         List<String> winners = scores.entrySet().stream()
                 .filter(entry -> entry.getValue() == highestScore)
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+                .map(Map.Entry::getKey).toList();
         if (winners.size() == 1) {
             System.out.println("Winner: " + winners.get(0) + " with a score of " + highestScore);
         } else {
             System.out.println("It's a draw between the following players with a score of " + highestScore + ": ");
-            winners.forEach(playerName -> System.out.println(playerName));
+            winners.forEach(System.out::println);
         }
     }
 
