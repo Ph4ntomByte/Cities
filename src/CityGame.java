@@ -7,8 +7,9 @@ public class CityGame {
     private final Set<String> usedCities = new HashSet<>();
     private final Random random = new Random();
     public Map<String, Integer> playerAttempts = new HashMap<>();
+    public Map<String, Integer> countOfStrike = new HashMap<>();
+    private String lastCityUsed = "";
 
-    Scanner scanner = new Scanner(System.in);
 
     public void loadCities(String path) {
         try {
@@ -26,55 +27,66 @@ public class CityGame {
         }
     }
 
-    public void startGame(String playerName) {
-        loadCities("src/Lists/ListOfCities");
-        playerAttempts.put(playerName, 5);
-        int attempts = playerAttempts.get(playerName);
-
-        while (attempts > 0) {
-            System.out.print(playerName + " city: ");
-            String userCity = scanner.nextLine().trim();
-            if (isCityValid(userCity, playerName)) {
-                ComputerCity(userCity.toUpperCase().charAt(userCity.length() - 1), playerName);
-            }
-            attempts = playerAttempts.get(playerName);
-        }
-    }
-
-    public boolean isCityValid(String city, String playerName) {
-        int attempts = playerAttempts.get(playerName);
-
+    public boolean isCityValid(String city) {
         if (usedCities.contains(city.toLowerCase())) {
             System.out.println("This city has already been used.");
-            attempts--;
-        } else if (!cityMap.containsKey(Character.toUpperCase(city.charAt(0))) || !cityMap.get(Character.toUpperCase(city.charAt(0))).contains(city.toLowerCase())) {
+        } else if (!cityMap.containsKey(Character.toUpperCase(city.charAt(0))) ||
+                !cityMap.get(Character.toUpperCase(city.charAt(0))).contains(city.toLowerCase())) {
             System.out.println("This city does not exist.");
-            attempts--;
+        } else if (!lastCityUsed.isEmpty() && city.toLowerCase().charAt(0) != lastCityUsed.toLowerCase().charAt(lastCityUsed.length() - 1)) {
+            System.out.println("The city does not start with the correct letter.");
         } else {
             System.out.println("Correct! 🎉");
             markCityAsUsed(city);
+            lastCityUsed = city;
             return true;
         }
-
-        System.out.println("You have " + attempts + " attempts left.");
-        playerAttempts.put(playerName, attempts);
         return false;
     }
+
 
     public void ComputerCity(char letter, String playerName) {
         List<String> cities = cityMap.getOrDefault(Character.toUpperCase(letter), Collections.emptyList());
         cities.removeAll(usedCities);
-        if (!cities.isEmpty()) {
-            String chosenCity = cities.get(random.nextInt(cities.size()));
-            usedCities.add(chosenCity.toLowerCase());
-            System.out.println("Computer's city: " + chosenCity);
-        } else {
-            System.out.println("No more cities available.");
+
+        if (cities.isEmpty()) {
+            System.out.println("No more cities available for the letter: " + letter);
+
+            Optional<Character> newLetter = findNewLetter();
+
+            if (newLetter.isPresent()) {
+                System.out.println("Switching to a new letter: " + newLetter.get());
+                cities = cityMap.get(newLetter.get());
+                cities.removeAll(usedCities);
+            } else {
+                System.out.println("No more cities available in the game.");
+                return;
+            }
         }
+
+        String chosenCity = cities.get(random.nextInt(cities.size()));
+        usedCities.add(chosenCity.toLowerCase());
+        lastCityUsed = chosenCity;
+        System.out.println("Computer's turn: " + chosenCity);
+    }
+
+    private Optional<Character> findNewLetter() {
+        for (Map.Entry<Character, List<String>> entry : cityMap.entrySet()) {
+            List<String> availableCities = new ArrayList<>(entry.getValue());
+            availableCities.removeAll(usedCities);
+            if (!availableCities.isEmpty()) {
+                return Optional.of(entry.getKey());
+            }
+        }
+        return Optional.empty();
     }
 
     private void markCityAsUsed(String city) {
         usedCities.add(city.toLowerCase());
+    }
+
+    public void nullStrike(String playerName) {
+        countOfStrike.put(playerName, 0);
     }
 
 
@@ -82,8 +94,7 @@ public class CityGame {
         int choice;
         do {
             while (!scanner.hasNextInt()) {
-                System.out.println("Enter a number");
-                System.out.print("Your choice: ");
+                System.out.print("Enter a number: ");
                 scanner.next();
             }
             choice = scanner.nextInt();

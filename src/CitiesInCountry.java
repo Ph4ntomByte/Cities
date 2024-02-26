@@ -3,38 +3,33 @@ import java.util.Scanner;
 public class CitiesInCountry extends CityGame {
     private void displayMenu() {
         System.out.println("Choose country");
-        System.out.println("1 All\n2 Spain\n3 United Kingdom\n4 USA\n5 Hungary\n6 Exit");
+        System.out.println("1 All Cities\n2 Countries\n3 United Kingdom\n4 USA\n5 Hungary\n6 Spain\n7 Exit");
         System.out.print("Your choice: ");
     }
 
-    public void chooseCountry() {
-        CityGame cityGame = new CityGame();
+    public String chooseCountry() {
         Scanner scan = new Scanner(System.in);
 
-        int choice;
         displayMenu();
-        choice = getValidChoice(scan, 6);
+        int choice = getValidChoice(scan, 7);
         switch (choice) {
             case 1:
-                loadCities("src/Lists/ListOfCities");
-                break;
+                return ("src/Lists/ListOfCities");
             case 2:
-                loadCities("src/Lists/ListOfSpanishCities");
-                break;
+                return ("src/Lists/ListOfCountries");
             case 3:
-                loadCities("src/Lists/ListOfEnglishCities");
-                break;
+                return ("src/Lists/ListOfEnglishCities");
             case 4:
-                loadCities("src/Lists/ListOfAmericanCities");
-                break;
+                return ("src/Lists/ListOfAmericanCities");
             case 5:
-                loadCities("src/Lists/ListOfHungarianCities.txt");
-                break;
+                return ("src/Lists/ListOfHungarianCities");
             case 6:
+                return ("src/Lists/ListOfSpanishCities");
+            case 7:
                 System.out.println("EXIT");
                 break;
         }
-
+        return "";
     }
 
 
