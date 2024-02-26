@@ -16,18 +16,14 @@ public class Multiplayer extends CityGame {
             String playerName = scanner.nextLine();
             playerNames.add(playerName);
             scores.put(playerName, 0);
+            countOfStrike.put(playerName, 0);
             playerAttempts.put(playerName, 5);
         }
-        if (count == 1) {
-
-            startGame(playerNames.get(0));
-        } else {
-            startMultiplayerGame();
-        }
+        startMultiplayerGame(count);
     }
 
 
-    private void startMultiplayerGame() {
+    private void startMultiplayerGame(int count) {
         loadCities("src/Lists/ListOfCities");
 
         boolean anyPlayerHasAttemptsLeft = true;
@@ -35,28 +31,30 @@ public class Multiplayer extends CityGame {
             anyPlayerHasAttemptsLeft = false;
 
             for (String playerName : playerNames) {
-                if (playerAttempts.getOrDefault(playerName, 5) > 0) {
-                    System.out.print(playerName + "'s turn: ");
-                    String cityInput = scanner.nextLine();
-                    if (isCityValid(cityInput, playerName)) {
-                        updateScore(playerName, 10);
-//                        ComputerCity(cityInput.toUpperCase().charAt(cityInput.length() - 1), playerName);
+                if (playerAttempts.getOrDefault(playerName, 2) > 0) {
+                    if (count == 1) {
+                        startGame(playerNames.get(0));
+                    } else {
+                        System.out.print(playerName + "'s turn: ");
+                        String cityInput = scanner.nextLine();
+                        if (isCityValid(cityInput, playerName)) {
+                            updateScore(playerName);
+                        }
+                        if (playerAttempts.get(playerName) > 0) {
+                            anyPlayerHasAttemptsLeft = true;
+                        }
                     }
-
-                    if (playerAttempts.get(playerName) > 0) {
-                        anyPlayerHasAttemptsLeft = true;
-                    }
+                    displayScores();
                 }
             }
         }
-
-        displayScores();
         announceWinner();
     }
 
 
-    private void updateScore(String playerName, int points) {
-        scores.put(playerName, scores.getOrDefault(playerName, 0) + points);
+    private void updateScore(String playerName) {
+        int strike = countOfStrike.get(playerName);
+        scores.put(playerName, scores.getOrDefault(playerName, 0) + (10 * strike));
     }
 
     private void displayScores() {
