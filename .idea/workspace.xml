@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ba61506-87b3-43ab-95a1-2d5f959da7d4" name="Changes" comment="fixed all issues, added prompt new game function">
+    <list default="true" id="4ba61506-87b3-43ab-95a1-2d5f959da7d4" name="Changes" comment="removed unnnecasry functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CitiesInCountry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CitiesInCountry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CityGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CityGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lists/Countries.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/Countries.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lists/ListOfAmmericanCities" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/ListOfAmericanCities" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lists/ListOfEnglishCities" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/ListOfEnglishCities" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lists/ListOfFranceCities" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/ListOfFranceCities" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lists/ListOfHungarianCities.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/ListOfHungarianCities.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lists/ListOfSpanishCities" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/ListOfSpanishCities" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Multiplayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multiplayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/r.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/r.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +116,7 @@
       <workItem from="1708604120517" duration="3028000" />
       <workItem from="1708612335210" duration="11399000" />
       <workItem from="1708675565562" duration="9739000" />
-      <workItem from="1708928008932" duration="1385000" />
+      <workItem from="1708928008932" duration="2587000" />
     </task>
     <task id="LOCAL-00001" summary="added attempts">
       <option name="closed" value="true" />
@@ -161,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708894550277</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="removed unnnecasry functions">
+      <option name="closed" value="true" />
+      <created>1708929796637</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708929796637</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +181,7 @@
     <MESSAGE value="fixed hungarian letters" />
     <MESSAGE value="improved checking conditions" />
     <MESSAGE value="fixed all issues, added prompt new game function" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed all issues, added prompt new game function" />
+    <MESSAGE value="removed unnnecasry functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unnnecasry functions" />
   </component>
 </project>
