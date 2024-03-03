@@ -4,23 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ba61506-87b3-43ab-95a1-2d5f959da7d4" name="Changes" comment="º">
-      <change afterPath="$PROJECT_DIR$/src/GameGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="4ba61506-87b3-43ab-95a1-2d5f959da7d4" name="Changes" comment="feat: interface&#10;&#10;added 2D display&#10;&#10;&#10;BREAKING CHANGE: removed CitiesInCountries">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CustomInputDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Lists/Places" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/.idea/Web_Backend.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/CityGame.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/GameGUI.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/Multiplayer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/WebGame.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/game.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Web_Backend/test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CityMANIA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CityMANIA.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CityGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CityGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lists/ListOfCities" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/ListOfCities" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lists/ListOfCountries" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lists/ListOfCountries" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Multiplayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Multiplayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/r.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -64,6 +84,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/CityGame.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GameGUI.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -82,36 +103,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Cities.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Multiplayer.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SwingDemo.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Display&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Cities.executor": "Run",
+    "Application.GameGUI.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Multiplayer.executor": "Run",
+    "Application.SwingDemo.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.WebGame.html.executor": "Run",
+    "Node.js.CityGame.js.executor": "Run",
+    "Node.js.GameGUI.js.executor": "Run",
+    "Node.js.citiesGame.js.executor": "Run",
+    "Node.js.game.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Display",
+    "ignore.preview.features.used": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "sonarlint",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Web_Backend" />
       <recent name="$PROJECT_DIR$/src/Lists" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Cities" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Cities" />
+      <module name="CityMANIA" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GameGUI" />
       <module name="CityMANIA" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -141,20 +178,12 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.GameGUI" />
         <item itemvalue="Application.SwingDemo" />
         <item itemvalue="Application.Multiplayer" />
         <item itemvalue="Application.Cities" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-53826d6a" />
-        <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-9b16c6e2" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -175,7 +204,21 @@
       <workItem from="1708945439578" duration="22549000" />
       <workItem from="1709019884218" duration="10002000" />
       <workItem from="1709032238461" duration="5975000" />
-      <workItem from="1709039994320" duration="1582000" />
+      <workItem from="1709039994320" duration="2411000" />
+      <workItem from="1709042850558" duration="793000" />
+      <workItem from="1709044736628" duration="8283000" />
+      <workItem from="1709068973050" duration="3831000" />
+      <workItem from="1709105519624" duration="6159000" />
+      <workItem from="1709120395444" duration="1621000" />
+      <workItem from="1709154944687" duration="5509000" />
+      <workItem from="1709193893609" duration="2232000" />
+      <workItem from="1709207092702" duration="3223000" />
+      <workItem from="1709222931515" duration="11623000" />
+      <workItem from="1709277835154" duration="38000" />
+      <workItem from="1709277885685" duration="897000" />
+      <workItem from="1709293720199" duration="958000" />
+      <workItem from="1709299418355" duration="1012000" />
+      <workItem from="1709300449471" duration="7412000" />
     </task>
     <task id="LOCAL-00001" summary="added attempts">
       <option name="closed" value="true" />
@@ -241,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708975728717</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: interface&#10;&#10;added 2D display&#10;&#10;&#10;BREAKING CHANGE: removed CitiesInCountries">
+      <option name="closed" value="true" />
+      <created>1709041821803</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1709041821803</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +327,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="origin/Display" />
                       </list>
                     </value>
                   </entry>
@@ -298,7 +349,10 @@
     <MESSAGE value="added strikes function" />
     <MESSAGE value="Get rid of start game, and implemented strikes" />
     <MESSAGE value="Implemented different CitiesInCountry again" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Added interface to the program" />
+    <MESSAGE value="feat: interface&#10;&#10;changed" />
+    <MESSAGE value="feat: interface&#10;&#10;added 2D display&#10;&#10;&#10;BREAKING CHANGE: removed CitiesInCountries" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: interface&#10;&#10;added 2D display&#10;&#10;&#10;BREAKING CHANGE: removed CitiesInCountries" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

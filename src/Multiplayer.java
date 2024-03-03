@@ -3,8 +3,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Multiplayer extends CityGame {
-    private final List<String> playerNames = new ArrayList<>();
-    private final Map<String, Integer> scores = new HashMap<>();
+    public final List<String> playerNames = new ArrayList<>();
+    public final Map<String, Integer> scores = new HashMap<>();
     public Map<String, Integer> playerAttempts = new HashMap<>();
     private GameGUI gui;
 
@@ -27,14 +27,22 @@ public class Multiplayer extends CityGame {
 
     }
 
+    public void resetGameState() {
+        playerNames.clear();
+        scores.clear();
+        playerAttempts.clear();
+        countOfStrike.clear();
+        usedCities.clear(); // Ensure all cities are considered unused for the new game
+        gui.lastCityUsed = "";
+    }
+
     private String chooseCountry() {
-        String[] options = {"All Cities", "Spain", "United Kingdom", "USA", "Hungary", "Countries"};
+        String[] options = {"All Cities", "Places", "United Kingdom", "USA", "Hungary", "Countries"};
         int choice = JOptionPane.showOptionDialog(null, "Choose a country for the game:",
                 "Country Selection", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                 null, options, options[0]);
         return switch (choice) {
-            case 0 -> "src/Lists/ListOfCities";
-            case 1 -> "src/Lists/ListOfSpanishCities";
+            case 1 -> "src/Lists/Places";
             case 2 -> "src/Lists/ListOfEnglishCities";
             case 3 -> "src/Lists/ListOfAmericanCities";
             case 4 -> "src/Lists/ListOfHungarianCities";
@@ -43,55 +51,48 @@ public class Multiplayer extends CityGame {
         };
     }
 
-    public boolean isGameOver(List<String> names) {
-        for (String name : names) {
-            if (!playerAttempts.isEmpty()) {
-                if (playerAttempts.getOrDefault(name, 5) == 0) {
-                    playerNames.remove(name);
-                    playerAttempts.remove(name);
-                    scores.remove(name);
-                }
-            }
-            if (playerNames.size() == 1) {
-                return false;
-            }
-        }
-        return true;
-    }
-
 
     public boolean countAttempts(String playerName, String cityInput) {
         if (!isCityValid(cityInput)) {
             int attemptsLeft = playerAttempts.get(playerName) - 1;
             playerAttempts.put(playerName, attemptsLeft);
-            JOptionPane.showMessageDialog(null, STR."\{playerName} has \{attemptsLeft} attempts");
+            gui.appendText(STR."\{playerName} has \{attemptsLeft} attempts left.");
+
             if (attemptsLeft <= 0) {
-                gui.appendText(STR."\{playerName} has no more attempts left.");
+                gui.appendText(STR."\{playerName}  is out of the game.");
+                eliminatePlayer(playerName);
             }
             return false;
         } else {
-            incrementStrike(playerName);
+            incrementStreaks(playerName);
+            return true;
         }
 
-        return true;
     }
 
-    private void incrementStrike(String playerName) {
-        int currentStrikes = countOfStrike.getOrDefault(playerName, 0);
-        if (currentStrikes < 5) {
-            countOfStrike.put(playerName, currentStrikes + 1);
-            gui.appendText(STR."\{playerName} has \{currentStrikes + 1} strikes.");
-        } else {
-            gui.appendText(STR."\{playerName} has reached the maximum number of strikes.");
-        }
-        updateScore(playerName);
-
+    private void eliminatePlayer(String playerName) {
+        playerNames.remove(playerName);
+        playerAttempts.remove(playerName);
+        scores.remove(playerName);
+        gui.updateGameState();
     }
 
     private void updateScore(String playerName) {
         int currentScore = scores.getOrDefault(playerName, 0);
-        scores.put(playerName, currentScore + (10));
-        gui.appendText(STR."\{playerName}'s new score: \{currentScore + 10}");
+        scores.put(playerName, currentScore + countOfStrike.get(playerName));
+        gui.appendText(STR."\{playerName}'s new score: \{countOfStrike.get(playerName)}");
+    }
+
+    private void incrementStreaks(String playerName) {
+        int currentStrikes = countOfStrike.getOrDefault(playerName, 0);
+        if (currentStrikes < 5) {
+            countOfStrike.put(playerName, currentStrikes + 1);
+            gui.appendText(STR."\{playerName} has \{currentStrikes + 1} streaks.");
+        } else {
+            gui.appendText(STR."\{playerName} has reached the maximum number of streaks.");
+        }
+        updateScore(playerName);
+
     }
 
 
@@ -117,4 +118,6 @@ public class Multiplayer extends CityGame {
             return STR."It's a draw between: \{String.join(", ", winners)}. Score: \{highestScore}";
         }
     }
+
+
 }
