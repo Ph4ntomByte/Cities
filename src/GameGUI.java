@@ -3,6 +3,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class GameGUI extends Multiplayer {
     private JTextArea textArea;
     private final Multiplayer game;
@@ -81,7 +82,7 @@ public class GameGUI extends Multiplayer {
         }
         game.setPlayerNames(names);
         handlePlayerTurn();
-        
+
     }
 
 
